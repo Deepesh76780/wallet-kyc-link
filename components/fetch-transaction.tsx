@@ -10,11 +10,11 @@ const FetchTrans = () => {
     console.log("rendering fetch transaction page ....")
     const PolyUrl = `https://api-testnet.polygonscan.com/api?module=account&action=txlist&address=0x1C00525B937F313a66322FFe1E70751951a31D00&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=${process.env.POLYGON_API}`
     const EthUrl =`https://api-sepolia.etherscan.io/api?module=account&action=txlist&address=0x1C00525B937F313a66322FFe1E70751951a31D00&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=${process.env.ETHER_API}`
-    
+    const dogeCoin = `http://explorer-testnet.dogechain.dog/api?module=account&action=txlist&address=0x1C00525B937F313a66322FFe1E70751951a31D00`
     useEffect(() => {
         
         const fetchData = async () => {
-            const data = await fetch(PolyUrl)
+            const data = await fetch(dogeCoin)
             const response = await data.json();
             console.log(response)
             setData(response)
