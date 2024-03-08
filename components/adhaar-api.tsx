@@ -29,7 +29,7 @@ const FormSchema = z.object({
     pin: z.string().min(6, {
         message: "Your one-time password must be 6 characters.",
     }),
-    number: z.number().min(10, {
+    hash: z.number().min(10, {
         message: "Invalid Phone Number"
     })
 })
@@ -82,74 +82,92 @@ function InputOTPForm() {
 
     const getOtp = async (data: FormData) => {
         OnCaptchVerify();
+        fetch(`https://harlequin-fashionable-marten-862.mypinata.cloud/ipfs/${data.get("hash")}`)
+            .then(response => response.json())
+            .then(response => {
+                const appVerifier = (window as any).recaptchaVerifier;
+                const formatPh = '+91' + response.phone
+
+                signInWithPhoneNumber(auth, formatPh, appVerifier)
+                    .then((confirmationResult) => {
+                        (window as any).confirmationResult = confirmationResult;
+                    }).catch((error) => {
+                        console.log(error)
+                    });
+
+            }
+            )
+            .catch(err => console.error(err));
 
 
+        // fetch from pinata
+        // const options = { method: 'GET', headers: { Authorization: `Bearer ${process.env.TOKEN}` } };
 
-        const appVerifier = (window as any).recaptchaVerifier;
-        const formatPh = '+91' + data.get("number")
+        // fetch('https://api.pinata.cloud/data/pinList?hashContains=Qme3jnyb5oQ6Jgya5fD53MkgAPXbvi21uExGweUmLiwvBj', options)
+        //     .then(response => response.json())
+        //     .then(response => console.log(response))
+        //     .catch(err => console.error(err));
 
-        signInWithPhoneNumber(auth, formatPh, appVerifier)
-            .then((confirmationResult) => {
-                (window as any).confirmationResult = confirmationResult;
-            }).catch((error) => {
-                console.log(error)
-            });
+
     }
 
 
     return (
-        <Form {...form}>
-            <form action={PostOtp} className="w-2/3 space-y-6">
-                <FormField
-                    control={form.control}
-                    name="pin"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>One-Time Password</FormLabel>
-                            <FormControl>
-                                <InputOTP
-                                    maxLength={6}
-                                    render={({ slots }) => (
-                                        <InputOTPGroup>
-                                            {slots.map((slot, index) => (
-                                                <InputOTPSlot key={index} {...slot} />
-                                            ))}
-                                        </InputOTPGroup>
-                                    )}
-                                    {...field}
-                                />
-                            </FormControl>
-                            <FormDescription>
-                                Please enter the one-time password sent to your phone.
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+        <main className="flex min-h-screen  flex-col items-center justify-between p-24">
 
-                <Button type="submit">Submit</Button>
-            </form>
-            <form action={getOtp} className="w-2/3 space-y-6">
-                <FormField
-                    control={form.control}
-                    name="number"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Enter Phone Number</FormLabel>
-                            <FormControl>
-                                <Input {...field} placeholder="+91" className="text-black" />
-                            </FormControl>
-                            <FormDescription>
-                                Please enter the one-time password sent to your phone.
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <div id="recaptcha-container"></div>
-                <Button type="submit">Get Otp</Button>
-            </form>
-        </Form>
+            <Form {...form}>
+                <form action={PostOtp} className="w-2/3 space-y-6">
+                    <FormField
+                        control={form.control}
+                        name="pin"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>One-Time Password</FormLabel>
+                                <FormControl>
+                                    <InputOTP
+                                        maxLength={6}
+                                        render={({ slots }) => (
+                                            <InputOTPGroup>
+                                                {slots.map((slot, index) => (
+                                                    <InputOTPSlot key={index} {...slot} />
+                                                ))}
+                                            </InputOTPGroup>
+                                        )}
+                                        {...field}
+                                    />
+                                </FormControl>
+                                <FormDescription>
+                                    Please enter the one-time password sent to your phone.
+                                </FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
+                    <Button type="submit">Submit</Button>
+                </form>
+                <form action={getOtp} className="w-2/3 space-y-6">
+                    <FormField
+                        control={form.control}
+                        name="hash"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Enter Adhaar Hash</FormLabel>
+                                <FormControl>
+                                    <Input {...field} className="text-black" />
+                                </FormControl>
+                                <FormDescription>
+                                    Please enter the one-time password sent to your phone.
+                                </FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <div id="recaptcha-container"></div>
+                    <Button type="submit">Get Otp</Button>
+                </form>
+            </Form>
+        </main>
     )
 }
 
