@@ -24,15 +24,15 @@ const page = () => {
 
     return (
 
-        <main className='bg-foreground text-muted min-h-screen flex items-center place-items-center min-w-screen'>
+        <main className='bg-foreground text-muted min-h-screen flex flex-col items-center w-full justify-center'>
             {
                 user ?
-                    <div className='flex'>
-                        <Button onClick={() => open({ view: 'Connect' })}>Connect Wallet</Button>
+                    <div className='flex gap-2'>
+                        <Button onClick={() => open({ view: 'Connect' })}>Connect All Wallet</Button>
                         <Button onClick={() => disconnect()}>Disconnect</Button>
                     </div>
                     :
-                    <Button onClick={() => router.push("/")}>
+                    <Button onClick={() => router.replace("/")}>
                         retry
                     </Button>
             }
