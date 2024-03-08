@@ -2,11 +2,13 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface CounterState {
-    value: Object
+    value: Object | undefined,
+    KycHash: string
 }
 
 const initialState: CounterState = {
-    value: {},
+    value: undefined,
+    KycHash: ""
 }
 
 export const userSlice = createSlice({
@@ -19,9 +21,12 @@ export const userSlice = createSlice({
         removeUser: (state) => {
             state.value = {}
         },
+        addHash: (state, action: PayloadAction<any>) => {
+            state.KycHash = action.payload
+        }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { addUser, removeUser } = userSlice.actions
+export const { addUser, removeUser, addHash } = userSlice.actions
 export default userSlice.reducer

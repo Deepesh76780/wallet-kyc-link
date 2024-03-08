@@ -30,7 +30,7 @@ import {
 import { useToast } from "@/components/ui/use-toast"
 import { Input } from "./ui/input"
 import { useState } from "react";
-import { addUser } from "@/redux/features/user/userSlice";
+import { addHash, addUser } from "@/redux/features/user/userSlice";
 
 const FormSchema = z.object({
     pin: z.string().min(6, {
@@ -86,10 +86,14 @@ function InputOTPForm() {
     }
 
     const getOtp = async (data: FormData) => {
+
+        const KycHash = data.get("hash")
+        dispatch(addHash(KycHash))
+
         // OnCaptchVerify();
-        // fetch(`https://harlequin-fashionable-marten-862.mypinata.cloud/ipfs/${data.get("hash")}`)
+        // fetch(`https://harlequin-fashionable-marten-862.mypinata.cloud/ipfs/${KycHash}`)
         //     .then(response => response.json())
-        //     .then(response => {
+        //     .then(response => {  
         //         const appVerifier = (window as any).recaptchaVerifier;
         //         const formatPh = '+91' + response.phone
 
@@ -159,7 +163,7 @@ function InputOTPForm() {
                                         <Input {...field} className="text-black" />
                                     </FormControl>
                                     <FormDescription>
-                                        Please enter the one-time password sent to your phone.
+                                        Please enter the adhaar ID
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>

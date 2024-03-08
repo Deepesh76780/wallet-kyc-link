@@ -3,8 +3,16 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import ReduxProvider from "./providers/redux-provider";
+import { headers } from 'next/headers'
+
 
 const inter = Inter({ subsets: ["latin"] });
+
+
+import { cookieToInitialState } from 'wagmi'
+
+import { config } from '@/config'
+import { ContextProvider } from '@/context'
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,11 +24,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const initialState = cookieToInitialState(config, headers().get('cookie'))
+
   return (
     <html lang="en">
       <body className={inter.className}>
         <ReduxProvider>
-          {children}
+          <ContextProvider initialState={initialState}>
+            {children}
+          </ContextProvider>
           <Toaster />
         </ReduxProvider>
       </body>
