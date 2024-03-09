@@ -3,16 +3,14 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import ReduxProvider from "./providers/redux-provider";
+import { cookieToInitialState } from 'wagmi'
+import { config } from '@/config'
+import { ContextProvider } from '@/context'
 import { headers } from 'next/headers'
 
 
 const inter = Inter({ subsets: ["latin"] });
 
-
-import { cookieToInitialState } from 'wagmi'
-
-import { config } from '@/config'
-import { ContextProvider } from '@/context'
 
 export const metadata: Metadata = {
   title: "Create Next App",
