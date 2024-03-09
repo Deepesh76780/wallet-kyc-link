@@ -11,8 +11,8 @@ export const useContract = () => {
     const [resultl, setResult] = useState([]);
     const [allTrans, setAllTrans] = useState();
     const [userData, setUserData] = useState<any>();
-    // const KycHash = useSelector((state: RootState) => state.user.KycHash)
-    const KycHash = "Qme3jnyb5oQ6Jgya5fD53MkgAPXbvi21uExGweUmLiwvBj";
+    const KycHash = useSelector((state: RootState) => state.user.KycHash)
+    // const KycHash = "Qme3jnyb5oQ6Jgya5fD53MkgAPXbvi21uExGweUmLiwvBj";
     useEffect(() => {
         const web3Handler = async () => {
 
