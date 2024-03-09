@@ -17,8 +17,6 @@ const page = () => {
 
     const [account, setAccount] = useState(null)
     const [Instance, setContractInstance] = useState<any>()
-    const [wallets, setWallets] = useState([])
-
 
 
     const { open } = useWeb3Modal()
@@ -65,11 +63,10 @@ const page = () => {
     useEffect(() => {
         const contractInstance = async () => {
             if (Instance) {
-                const tx = await (Instance as any)?.addWallet("Qme3jnyb5oQ6Jgya5fD53MkgAPXbvi21uExGweUmLiwvBl", address)
+                const tx = await (Instance as any)?.addWallet(KycHash, address)
                 await tx.wait(1)
-                const tx1 = await (Instance as any)?.getWallet("Qme3jnyb5oQ6Jgya5fD53MkgAPXbvi21uExGweUmLiwvBl")
+                const tx1 = await (Instance as any)?.getWallet(KycHash)
                 const result = await tx1
-                setWallets(result)
             }
         }
 

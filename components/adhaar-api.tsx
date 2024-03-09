@@ -76,13 +76,12 @@ function InputOTPForm() {
 
         const otp = data.get("pin");
 
-        // (window as any).confirmationResult.confirm(otp).then(async (res: any) => {
-        //     // dispatch(addUser(res.user))
-        // }).catch((err: Error) => {
-        //     console.log(err)
-        // })
-        dispatch(addUser({ name: "deepesh" }))
-        router.push("/enter-wallet")
+        (window as any).confirmationResult.confirm(otp).then(async (res: any) => {
+            dispatch(addUser(res.user))
+            router.push("/enter-wallet")
+        }).catch((err: Error) => {
+            console.log(err)
+        })
     }
 
     const getOtp = async (data: FormData) => {
@@ -90,29 +89,26 @@ function InputOTPForm() {
         const KycHash = data.get("hash")
         dispatch(addHash(KycHash))
 
-        // OnCaptchVerify();
-        // fetch(`https://harlequin-fashionable-marten-862.mypinata.cloud/ipfs/${KycHash}`)
-        //     .then(response => response.json())
-        //     .then(response => {  
-        //         const appVerifier = (window as any).recaptchaVerifier;
-        //         const formatPh = '+91' + response.phone
+        OnCaptchVerify();
+        fetch(`https://harlequin-fashionable-marten-862.mypinata.cloud/ipfs/${KycHash}`)
+            .then(response => response.json())
+            .then(response => {  
+                const appVerifier = (window as any).recaptchaVerifier;
+                const formatPh = '+91' + response.phone
 
-        //         signInWithPhoneNumber(auth, formatPh, appVerifier)
-        //             .then((confirmationResult) => {
-        //                 (window as any).confirmationResult = confirmationResult;
-        //                 toast({
-        //                     title: "OTP SEND TO REGISTERED MOBILE NUMBER",
-        //                 })
-        //                 setSendOtp(true)
-        //             }).catch((error) => {
-        //                 console.log(error)
-        //             });
-        //     }
-        //     )
-        //     .catch(err => console.error(err));
-
-        setSendOtp(true)
-
+                signInWithPhoneNumber(auth, formatPh, appVerifier)
+                    .then((confirmationResult) => {
+                        (window as any).confirmationResult = confirmationResult;
+                        toast({
+                            title: "OTP SEND TO REGISTERED MOBILE NUMBER",
+                        })
+                        setSendOtp(true)
+                    }).catch((error) => {
+                        console.log(error)
+                    });
+            }
+            )
+            .catch(err => console.error(err));
     }
 
 
