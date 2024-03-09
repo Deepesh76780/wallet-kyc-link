@@ -9,7 +9,9 @@ import { RootState } from '@/redux/store';
 export const useContract = () => {
 
     const [resultl, setResult] = useState([]);
+    const [allTrans, setAllTrans] = useState();
     const KycHash = useSelector((state: RootState) => state.user.KycHash)
+    // const KycHash = "Qme3jnyb5oQ6Jgya5fD53MkgAPXbvi21uExGweUmLiwvBj"
 
     useEffect(() => {
         const web3Handler = async () => {
@@ -33,10 +35,13 @@ export const useContract = () => {
                     await web3Handler()
                 })
 
-                const address = "0x7f83A5322731c14a1551e342CC36a6496701ae16";
+                const address = "0x6adFA887953927B834Cae6a637f94D91B0a343E0";
                 var contract = new ethers.Contract(address, KycAbi["abi"], signer);
-                const tx1 = await contract.getWallet(KycHash)
+                const tx1 = KycHash.length > 0 && await contract.getWallet(KycHash)
+                const tx2 = await contract.getAllHash()
+                const result2 = await tx2
                 const result = await tx1
+                setAllTrans(result2)
                 setResult(result)
             }
         }
@@ -44,5 +49,5 @@ export const useContract = () => {
         web3Handler()
     }, [])
 
-    return {resultl}
+    return { resultl, allTrans }
 }

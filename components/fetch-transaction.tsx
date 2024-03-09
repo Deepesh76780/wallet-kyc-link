@@ -19,7 +19,6 @@ const FetchTrans = ({ address }: { address: string }) => {
             const PolyDataResponse = await PolyData.json();
             const EthDataResponse = await EthData.json();
             const newArray: any = [...dogeDataresponse.result, ...PolyDataResponse.result, ...EthDataResponse.result]
-            console.log(newArray)
             setData(newArray)
         }
 

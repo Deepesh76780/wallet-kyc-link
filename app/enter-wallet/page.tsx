@@ -51,7 +51,7 @@ const page = () => {
                     await web3Handler()
                 })
 
-                const address = "0x7f83A5322731c14a1551e342CC36a6496701ae16";
+                const address = "0x6adFA887953927B834Cae6a637f94D91B0a343E0";
                 var contract = new ethers.Contract(address, KycAbi["abi"], signer);
                 setContractInstance(contract);
             }
