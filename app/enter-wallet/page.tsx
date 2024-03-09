@@ -81,7 +81,7 @@ const page = () => {
                 user ?
                     <div className='flex gap-2'>
                         <Button onClick={() => open({ view: 'Connect' })}>Connect All Wallet</Button>
-                        <Link href={"/dashboard"}>
+                        <Link href={"/adhaar-user/dashboard"}>
                             <Button>Done</Button>
                         </Link>
                     </div>

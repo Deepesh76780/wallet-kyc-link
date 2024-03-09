@@ -113,7 +113,7 @@ function InputOTPForm() {
 
 
     return (
-        <main className="flex min-h-screen  flex-col items-center justify-between p-24">
+        <main className="flex min-h-screen w-full  flex-col items-center justify-between p-24">
 
             <Form {...form}>
                 {otpSend ?
