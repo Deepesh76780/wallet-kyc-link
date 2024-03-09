@@ -27,7 +27,7 @@ const FetchTrans = ({ address }: { address: string }) => {
 
 
     return (
-        <main className="flex min-h-screen  flex-col items-center justify-between p-24">
+        <main className="flex  flex-col ">
             {
                 data && data?.map((item: any, index: number) => (
                     <TransCard data={item} key={index} />

@@ -10,9 +10,9 @@ export const useContract = () => {
 
     const [resultl, setResult] = useState([]);
     const [allTrans, setAllTrans] = useState();
-    const KycHash = useSelector((state: RootState) => state.user.KycHash)
-    // const KycHash = "Qme3jnyb5oQ6Jgya5fD53MkgAPXbvi21uExGweUmLiwvBj"
-
+    const [userData, setUserData] = useState<any>();
+    // const KycHash = useSelector((state: RootState) => state.user.KycHash)
+    const KycHash = "Qme3jnyb5oQ6Jgya5fD53MkgAPXbvi21uExGweUmLiwvBj";
     useEffect(() => {
         const web3Handler = async () => {
 
@@ -46,8 +46,18 @@ export const useContract = () => {
             }
         }
 
+
+        const data = () => {
+            fetch(`https://harlequin-fashionable-marten-862.mypinata.cloud/ipfs/${KycHash}`)
+                .then(response => response.json())
+                .then(response => setUserData(response)).catch((err) => {
+                    console.error(err)
+                })
+        }
+
+        data()
         web3Handler()
     }, [])
 
-    return { resultl, allTrans }
+    return { resultl, allTrans, userData }
 }

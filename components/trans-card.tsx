@@ -15,7 +15,7 @@ const TransCard = ({ data }: { data: any }) => {
     const timeDifference = currentTime - pastTime;
     const minutesAgo = Math.floor(timeDifference / (1000 * 60))
     return (
-        <Card className='border-4 border-muted w-[80%] m-2'>
+        <Card className='border-4 border-muted m-2'>
             <CardHeader>
                 <CardDescription>blockhash: {data.blockHash} </CardDescription>
             </CardHeader>
