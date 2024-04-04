@@ -74,7 +74,8 @@ function InputOTPForm() {
 
     const PostOtp = async (data: FormData) => {
 
-        const otp = data.get("pin");
+        const otp = data.get("pin"); 
+        
         (window as any).confirmationResult.confirm(otp).then(async (res: any) => {
             dispatch(addUser(res.user))
             router.push("/enter-wallet")
