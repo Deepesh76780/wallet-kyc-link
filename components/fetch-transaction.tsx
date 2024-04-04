@@ -5,6 +5,7 @@ import TransCard from './trans-card';
 
 const FetchTrans = ({ address }: { address: string }) => {
 
+    console.log(address)
     const [data, setData] = useState([]);
     const PolyUrl = `https://api-testnet.polygonscan.com/api?module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=${process.env.POLYGON_API}`
     const EthUrl = `https://api-sepolia.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=${process.env.ETHER_API}`
@@ -12,13 +13,13 @@ const FetchTrans = ({ address }: { address: string }) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const dogeData = await fetch(dogeCoin)
+            // const dogeData = await fetch(dogeCoin)
             const PolyData = await fetch(PolyUrl)
             const EthData = await fetch(EthUrl)
-            const dogeDataresponse = await dogeData.json();
+            // const dogeDataresponse = await dogeData.json();
             const PolyDataResponse = await PolyData.json();
             const EthDataResponse = await EthData.json();
-            const newArray: any = [...dogeDataresponse.result, ...PolyDataResponse.result, ...EthDataResponse.result]
+            const newArray: any = [...PolyDataResponse.result, ...EthDataResponse.result]
             console.log(newArray)
             setData(newArray)
         }
