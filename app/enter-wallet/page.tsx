@@ -13,7 +13,7 @@ import Link from 'next/link'
 
 
 
-const page = () => {
+const EnterWallet = () => {
 
     const [account, setAccount] = useState(null)
     const [Instance, setContractInstance] = useState<any>()
@@ -94,4 +94,4 @@ const page = () => {
     )
 }
 
-export default page
+export default EnterWallet

@@ -3,7 +3,7 @@ import UserAvatar from '@/components/user-avatar'
 import { useContract } from '@/hooks/useContract'
 import React from 'react'
 
-const page = () => {
+const AdhaarAdmin = () => {
 
     const { allTrans } = useContract()
 
@@ -21,4 +21,4 @@ const page = () => {
     )
 }
 
-export default page
+export default AdhaarAdmin

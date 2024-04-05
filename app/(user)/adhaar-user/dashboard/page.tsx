@@ -4,7 +4,7 @@ import FetchTrans from '@/components/fetch-transaction';
 import { useContract } from '@/hooks/useContract';
 
 
-const page = () => {
+const UserDashboard = () => {
 
 
     const { resultl, userData } = useContract()
@@ -42,4 +42,4 @@ const page = () => {
     )
 }
 
-export default page
+export default UserDashboard
