@@ -9,6 +9,7 @@ import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../firebase.config"
 
 import { useSelector, useDispatch } from 'react-redux'
+import { HoverBorderGradient } from "./ui/hover-border-gradient"
 import type { RootState } from "../redux/store"
 
 
@@ -47,7 +48,7 @@ function ExistingUser() {
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            hash:"" 
+            hash: ""
         },
     })
 
@@ -59,29 +60,39 @@ function ExistingUser() {
 
 
     return (
-        <main className="flex min-h-screen w-full  flex-col items-center justify-between p-24">
+        <main className='min-h-screen text-muted bg-foreground w-full p-5 flex flex-col items-center'>
+            <div className="h-[50rem] w-full    bg-grid-white/[0.2]  relative flex flex-col items-center pt-12">
 
-            <Form {...form}>
-                    <form action={helper} className="w-2/3 space-y-6">
-                        <FormField
-                            control={form.control}
-                            name="hash"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Enter Adhaar Hash</FormLabel>
-                                    <FormControl>
-                                        <Input {...field} className="text-black" />
-                                    </FormControl>
-                                    <FormDescription>
-                                        Please enter the adhaar ID
-                                    </FormDescription>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <Button type="submit">Go to Dashboard</Button>
-                    </form>
-            </Form>
+                <div className="shadow-xl bg-gray-900 border border-gray-800 w-[80%] p-4 opacity-80">
+                    <Form {...form}>
+                        <form action={helper} className="w-2/3 space-y-6">
+                            <FormField
+                                control={form.control}
+                                name="hash"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Enter Adhaar Hash</FormLabel>
+                                        <FormControl>
+                                            <Input {...field} className="text-black" />
+                                        </FormControl>
+                                        <FormDescription>
+                                            Please enter the adhaar ID
+                                        </FormDescription>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <HoverBorderGradient
+                                containerClassName="rounded-full"
+                                as="button"
+                                className="bg-blacktext-white flex items-center space-x-2"
+                            >
+                                <button type="submit">Go To Dashboard</button>
+                            </HoverBorderGradient>
+                        </form>
+                    </Form>
+                </div>
+            </div>
         </main>
     )
 }

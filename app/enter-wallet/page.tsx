@@ -9,6 +9,8 @@ import { useRouter } from 'next/navigation'
 import { ethers } from "ethers"
 import KycAbi from "../../artifacts/contracts/kyc.sol/KycLink.json"
 import Link from 'next/link'
+import { HoverBorderGradient } from "../../components/ui/hover-border-gradient"
+
 
 
 
@@ -80,9 +82,23 @@ const EnterWallet = () => {
             {
                 user ?
                     <div className='flex gap-2'>
-                        <Button onClick={() => open({ view: 'Connect' })}>Connect All Wallet</Button>
+                        <HoverBorderGradient
+                            containerClassName="rounded-full"
+                            as="button"
+                            className="bg-blacktext-white flex items-center space-x-2"
+                        >
+                            <div onClick={() => open({ view: 'Connect' })}>
+                                Connect All Wallet
+                            </div>
+                        </HoverBorderGradient>
                         <Link href={"/adhaar-user/dashboard"}>
-                            <Button>Done</Button>
+                            <HoverBorderGradient
+                                containerClassName="rounded-full"
+                                as="button"
+                                className="bg-blacktext-white flex items-center space-x-2"
+                            >
+                                <button type="submit">Go To DashBoard</button>
+                            </HoverBorderGradient>
                         </Link>
                     </div>
                     :
