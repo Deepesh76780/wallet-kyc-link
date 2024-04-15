@@ -16,7 +16,7 @@ const Header = () => {
                 </p>
                 <input
                     type="text"
-                    placeholder="hi@manuarora.in"
+                    placeholder="hi@iitnr.edu.in"
                     className="rounded-lg border border-neutral-800 p-2 focus:ring-2 text-slate-400 focus:ring-teal-500  w-full relative z-10 mt-4  bg-neutral-950 placeholder:text-neutral-700"
                 />
             </div>
