@@ -6,7 +6,7 @@ import Pitch from "@/components/pitch"
 
 export default function Home() {
   return (
-    <div className="min-h-screen w-full rounded-md bg-neutral-950 relative ">
+    <div className="min-h-screen w-full  bg-neutral-950 relative ">
       <Header/>
       <Application/>
       <Pitch/>
