@@ -28,13 +28,13 @@ const UserDashboard = () => {
                             return <FetchTrans address={item} key={index} />
                         })}
                     </div>
-                    <div className='max-h-[100vh] w-[30%]'>
+                    <div className='max-h-[100vh] w-[30%] justify-center items-center flex flex-col'>
                         <p className="text-3xl sm:text-6xl text-center font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8">
                             Profile
                         </p>
                         {
                             userData &&
-                            <div className='text-center'>
+                            <div className='text-center bg-gray-900 border border-gray-800 w-[80%] p-4 opacity-80'>
                                 <h1>name : {userData.name}</h1>
                                 <h1>phone : {userData.phone}</h1>
                                 <h1>address : {userData.address}</h1>
