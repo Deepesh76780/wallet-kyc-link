@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { MeteorsDemo } from './meterosDemo'
 
 const Application = () => {
     return (
@@ -9,28 +10,12 @@ const Application = () => {
                 <h1 className="relative z-10 text-lg md:text-4xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600  text-center font-sans font-bold">
                     Primary Application Scenarios
                 </h1>
-                <p></p>
-                <p className="text-neutral-500 max-w-lg mx-auto my-5 text-sm text-center relative z-10">
-                    Provides real-time oversight and comprehensive transaction tracking to security agencies and Users to manage there multiple transactions
-                    in one place
-                </p>
-                <input
-                    type="text"
-                    placeholder="hi@manuarora.in"
-                    className="rounded-lg border border-neutral-800 p-2 focus:ring-2 text-slate-400 focus:ring-teal-500  w-full relative z-10 mt-4  bg-neutral-950 placeholder:text-neutral-700"
-                />
-            </div>
-            <div className="flex mt-5 gap-4 mx-auto relative z-10">
-                <Link href={"/adhaar-user"}>
-                    <Button variant={"secondary"} >
-                        User
-                    </Button>
-                </Link>
-                <Link href={"/adhaar-admin"} >
-                    <Button variant={"secondary"}>
-                        Admin
-                    </Button>
-                </Link>
+                <div className='grid grid-cols-2 gap-14 mt-24'>
+                    <MeteorsDemo title="" desc="To enable linking Know Your Customer (KYC) data to all user wallets." />
+                    <MeteorsDemo title="" desc="To empower users to manage all their cryptocurrency wallets through a unified platform." />
+                    <MeteorsDemo title="" desc="To provide a comprehensive view of their digital asset holdings and activity." />
+                    <MeteorsDemo title="" desc="To cites statistics on cryptocurrency-related money laundering to highlight the urgency of effective solutions." />
+                </div>
             </div>
         </div>
     )
