@@ -139,7 +139,7 @@ function InputOTPForm() {
                                                 <InputOTP
                                                     maxLength={6}
                                                     render={({ slots }) => (
-                                                        <InputOTPGroup>
+                                                        <InputOTPGroup >
                                                             {slots.map((slot, index) => (
                                                                 <InputOTPSlot key={index} {...slot} />
                                                             ))}
