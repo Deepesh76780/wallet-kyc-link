@@ -180,9 +180,6 @@ function InputOTPForm() {
                                             <FormDescription>
                                                 Please enter the adhaar Hash
                                             </FormDescription>
-                                            <FormDescription>
-                                                Demo : Qme3jnyb5oQ6Jgya5fD53MkgAPXbvi21uExGweUmLiwvBj
-                                            </FormDescription>
                                             <FormMessage />
                                         </FormItem>
                                     )}
